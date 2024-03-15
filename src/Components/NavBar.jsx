@@ -17,17 +17,13 @@ const NavBar = () => {
       setWindowWidth(window.innerWidth)
     });
     getNavOptions();
-    console.log(windowWidth)
   }); // Empty dependency array ensures that this effect runs only once on mount
 
   
-
-
   const getNavOptions = () => {
     if (windowWidth <= 425){
       setOptionListLength(0);
     }else if (windowWidth <= 768) {
-      console.log('Match');
       setOptionListLength(1);
     } else if (windowWidth <= 1038){
       setOptionListLength(3);

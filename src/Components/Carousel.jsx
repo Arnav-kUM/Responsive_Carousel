@@ -120,7 +120,7 @@ const Carousel = () => {
 
     return (
       <div className={`mt-6 w-${windowWidth}`}>
-          <h1 className={`${windowWidth <= 412 ? `text-3xl` : (windowWidth <= 1025 ? `text-4xl`: `text-5xl`)} font-bold flex item-center justify-center mt-12`}>Featured Products</h1>
+          <h1 className={`${windowWidth <= 412 ? `text-3xl` : (windowWidth <= 1440 ? `text-4xl`: `text-5xl`)} font-bold flex item-center justify-center mt-12`}>Featured Products</h1>
           <h1 className='flex item-center justify-center mt-2'>Explore and discover a variety of products</h1>
           <div className={`flex item-center justify-center ${windowWidth <= 1025 ? `mt-[80px]`:`mt-[100px]`}`}>
               {imageList.map((key, index) => {

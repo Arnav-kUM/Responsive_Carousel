@@ -5,13 +5,16 @@ import img_3 from '../assets/img_3.jpg';
 import img_4 from '../assets/img_4.jpg';
 import img_5 from '../assets/img_5.jpg';
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
+import { GoDotFill } from "react-icons/go";
 
 const Carousel = () => {
     const [imagePointer, setImagePointer] = useState(2);
     const [imageList, setImageList] = useState([img_1, img_2, img_3, img_4, img_5]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const handleSliding = () => {
-        setImageList(prevList => {
+    const [position, setPosition] = useState(2);
+
+    const handleSliding = () => { 
+      setImageList(prevList => {
             const newList = [...prevList];
             const removedImage = newList.shift();
             newList.push(removedImage);
@@ -26,6 +29,16 @@ const Carousel = () => {
           newList.unshift(removedImage);
           return newList;
       });
+
+      if (position === 0){
+        setPosition(3);
+      }
+      else if (position === 1){
+        setPosition(4)
+      }
+      else {
+        setPosition(position-2);
+      }
   }
 
   const handleImageClicked = (index) => {
@@ -47,6 +60,18 @@ const Carousel = () => {
         newList.unshift(secondLastImage);
         return newList;
     });
+      if (position === 1){
+        setPosition(3);
+      }
+      else if (position === 0){
+        setPosition(2);
+      }
+      else if (position === 2){
+        setPosition(4);
+      }
+      else {
+        setPosition(position-3);
+      }
     }
     else{
       setImageList(prevList => {
@@ -57,13 +82,30 @@ const Carousel = () => {
         newList.push(secondImage);
         return newList;
     });
+    if (position === 4){
+      setPosition(0);
     }
+    else if (position === 3){
+      setPosition(4);
+    }
+    else{
+      setPosition(position+1);
+    }
+    }
+  }
+
+  const handleDotIcons = () => {
+    if (position === 4){
+      setPosition(0);
+    }
+    else {
+      setPosition(position+1);
+    } 
   }
     useEffect(() => {
         window.addEventListener('resize', function() {
           setWindowWidth(window.innerWidth)
         });
-        console.log(windowWidth)
       }); 
 
     useEffect(() => {
@@ -71,6 +113,10 @@ const Carousel = () => {
         
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+      handleDotIcons();
+    },[imageList])
 
     return (
       <div className={`mt-6 w-${windowWidth}`}>
@@ -121,6 +167,15 @@ const Carousel = () => {
               >
                   <AiFillCaretLeft/>
               </button>
+              
+              <div className='flex'>
+                {[...Array(5).keys()].map(i => (
+                  <div key={i} className={`${i === position ? `text-blue-400` : `text-gray-600`}`}>
+                    <GoDotFill/>
+                  </div>
+                ))}
+              </div>
+              
               <button className='ml-4'
                 onClick={handleSliding}
               >

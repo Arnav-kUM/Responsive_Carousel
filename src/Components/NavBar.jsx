@@ -65,7 +65,7 @@ const NavBar = () => {
                   <AiOutlineSearch />
                 </button>
                 <input
-                  className='bg-black text-white'
+                  className='bg-black text-white border-none outline-none'
                   type="search"
                   placeholder='Search Something...'
                 />

@@ -161,7 +161,7 @@ const Carousel = () => {
               })}
           </div>
           
-          <div className={`flex text-slate-800 item-center justify-center ${windowWidth <= 1025 ? `mt-[80px]`:`mt-[100px]`}`}>
+          <div className={`flex text-slate-800 item-center justify-center ${windowWidth <= 1025 ? `mt-[80px]`:`mt-[80px]`}`}>
               <button className='mr-4'
                 onClick={handleSlidingBack}
               >
